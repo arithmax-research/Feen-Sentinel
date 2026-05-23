@@ -1,39 +1,12 @@
-# OpenSentinel: Macro-Economic Geospatial Intelligence Platform
+# Feen-Sentinel: Macro-Economic Geospatial Intelligence Platform
 
-OpenSentinel is an enterprise-grade, non-profit alternative data platform designed as a planetary-scale monitoring network for global finance.
+Feen-Sentinel is an enterprise-grade, non-profit alternative data platform for global macro-economic monitoring.
 
-Using open satellite imagery from ESA Sentinel and NASA Landsat through Google Earth Engine, OpenSentinel tracks macro-economic indicators such as maritime trade volume (via SAR vessel detection) and agricultural productivity (via vegetation indices) to estimate regional and national economic health.
+Using open imagery from ESA Sentinel and NASA Landsat through Google Earth Engine, it tracks indicators such as maritime trade volume (via SAR vessel detection) and agricultural productivity (via vegetation indices) to estimate regional and national economic health.
 
-It provides an open-source alternative to proprietary satellite analytics products, enabling researchers, students, and non-profits to explore historical trends, analyze asset-level performance, and run machine learning-assisted forecasts through an interactive geospatial interface.
+The platform offers an open-source alternative to proprietary satellite analytics products, enabling researchers, students, and non-profits to explore historical trends, analyze asset-level performance, and run machine learning-assisted forecasts through an interactive geospatial interface.
 
-## Audience Guides
 
-### Academic and Research Audience
-
-OpenSentinel is designed to support reproducible geospatial-economic research using transparent methods and open datasets.
-
-- Research utility: Build and test hypotheses on maritime throughput, agricultural health, and macro trend proxies using multi-source satellite data.
-- Method transparency: NDVI extraction, SAR-based vessel estimation, and pipeline assumptions are fully inspectable and auditable.
-- Reproducibility: Containerized workflows and explicit environment configuration improve repeatability across labs and student teams.
-- Suggested usage: Use this platform as a base for capstone projects, policy papers, or method benchmarking against proprietary alternatives.
-
-### Open-Source Contributors
-
-OpenSentinel offers a modular full-stack architecture for contributors across backend, frontend, ML, and DevOps domains.
-
-- Clear boundaries: FastAPI endpoints, Celery tasks, and frontend map modules are intentionally separated to simplify parallel contribution.
-- Contribution surface: Add new indicators, improve model quality, optimize geospatial queries, or improve UI analytics workflows.
-- Development experience: Docker Compose provides a consistent local runtime for feature development and testing.
-- Suggested first contributions: Add tests for analytics endpoints, improve task observability, or implement additional map overlays.
-
-### Donor and Non-Profit Stakeholders
-
-OpenSentinel provides mission-aligned infrastructure for public-interest intelligence with transparent governance and lower operating barriers.
-
-- Mission fit: Expands access to macro-economic observability for organizations without access to high-cost proprietary data platforms.
-- Practical outcomes: Supports food security monitoring, logistics visibility, and economic resilience analysis in underserved regions.
-- Cost efficiency: Leverages open satellite programs and open-source technologies to reduce total ownership costs.
-- Funding impact: Investments can be directed into measurable outputs such as new indicators, region coverage expansion, and reliability improvements.
 
 ![Build](https://img.shields.io/badge/build-docker%20compose-0db7ed?logo=docker&logoColor=white)
 ![Backend](https://img.shields.io/badge/backend-FastAPI-009688?logo=fastapi&logoColor=white)
@@ -275,12 +248,41 @@ Deliverables:
 
 ## Contribution Guidelines
 
-OpenSentinel is an open-source initiative focused on planetary observation, research, and non-profit macro-economic transparency.
+Feen-Sentinel is an open-source initiative focused on planetary observation, research, and non-profit macro-economic transparency.
 
 1. Fork the repository and create a feature branch.
 2. Commit changes with conventional commit messages.
 3. Push the branch to your fork.
 4. Open a pull request into the development branch.
+
+## Audience Guides
+
+### Academic and Research Audience
+
+Feen-Sentinel supports reproducible geospatial-economic research with transparent methods and open datasets.
+
+- Research utility: Build and test hypotheses on maritime throughput, agricultural health, and macro trend proxies using multi-source satellite data.
+- Method transparency: NDVI extraction, SAR-based vessel estimation, and pipeline assumptions are fully inspectable and auditable.
+- Reproducibility: Containerized workflows and explicit environment configuration improve repeatability across labs and student teams.
+- Suggested usage: Use this platform as a base for capstone projects, policy papers, or method benchmarking against proprietary alternatives.
+
+### Open-Source Contributors
+
+The codebase uses a modular full-stack architecture for contributors across backend, frontend, ML, and DevOps.
+
+- Clear boundaries: FastAPI endpoints, Celery tasks, and frontend map modules are intentionally separated to simplify parallel contribution.
+- Contribution surface: Add new indicators, improve model quality, optimize geospatial queries, or improve UI analytics workflows.
+- Development experience: Docker Compose provides a consistent local runtime for feature development and testing.
+- Suggested first contributions: Add tests for analytics endpoints, improve task observability, or implement additional map overlays.
+
+### Donor and Non-Profit Stakeholders
+
+The project provides mission-aligned infrastructure for public-interest intelligence with transparent governance and lower operating barriers.
+
+- Mission fit: Expands access to macro-economic observability for organizations without access to high-cost proprietary data platforms.
+- Practical outcomes: Supports food security monitoring, logistics visibility, and economic resilience analysis in underserved regions.
+- Cost efficiency: Leverages open satellite programs and open-source technologies to reduce total ownership costs.
+- Funding impact: Investments can be directed into measurable outputs such as new indicators, region coverage expansion, and reliability improvements.
 
 ## Attribution and Data Licensing
 
