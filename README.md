@@ -1,4 +1,4 @@
-# Feen-Sentinel: Macro-Economic Geospatial Intelligence Platform
+# Feen-Sentinel: A Planetary-scale Sentinel for Hedge Funds to Analyze "Ground" Macro-Economics 
 
 ![Build](https://img.shields.io/badge/build-docker%20compose-0db7ed?logo=docker&logoColor=white)
 ![Backend](https://img.shields.io/badge/backend-FastAPI-009688?logo=fastapi&logoColor=white)
