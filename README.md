@@ -1,4 +1,4 @@
-# Feen-Sentinel: Macro-Economic Geospatial Intelligence Platform
+# Feen-Sentinel: A Planetary-scale Sentinel for Hedge Funds to Analyze "Ground" Macro-Economics 
 
 ![Build](https://img.shields.io/badge/build-docker%20compose-0db7ed?logo=docker&logoColor=white)
 ![Backend](https://img.shields.io/badge/backend-FastAPI-009688?logo=fastapi&logoColor=white)
@@ -9,11 +9,11 @@
 ![Queue](https://img.shields.io/badge/queue-Redis-DC382D?logo=redis&logoColor=white)
 ![Geospatial](https://img.shields.io/badge/geospatial-Google%20Earth%20Engine-4285F4?logo=googleearth&logoColor=white)
 
-Feen-Sentinel is an enterprise-grade, non-profit alternative data platform for global macro-economic monitoring.
+Feen-Sentinel is our enterprise-grade, non-profit alternative data platform for global macro-economic monitoring where we utilize other sources of data. 
 
-Using open imagery from ESA Sentinel and NASA Landsat through Google Earth Engine, it tracks indicators such as maritime trade volume (via SAR vessel detection) and agricultural productivity (via vegetation indices) to estimate regional and national economic health.
+Using open imagery from ESA Sentinel and NASA Landsat through Google Earth Engine, we tracks indicators such as maritime trade volume (via SAR vessel detection) and agricultural productivity (via vegetation indices) to estimate regional and national economic health.
 
-The platform offers an open-source alternative to proprietary satellite analytics products, enabling researchers, students, and non-profits to explore historical trends, analyze asset-level performance, and run machine learning-assisted forecasts through an interactive geospatial interface.
+Our platform offers an alternative access to proprietary satellite analytics products, enabling researchers, students, and non-profits to explore historical trends, analyze asset-level performance, and run machine learning-assisted forecasts through an interactive geospatial interface.
 
 
 ## Architecture Overview
