@@ -50,6 +50,15 @@ Metrics and geometry-linked records are indexed in PostgreSQL/PostGIS for fast s
 6. Presentation layer:
 Frontend consumes structured JSON endpoints and renders heatmaps, overlays, and trend charts.
 
+## Data Pool
+
+Current monitoring coverage focuses on the following data sources and signals:
+
+| Target | Core Dataset | Metric Gathered | Frequency |
+| :--- | :--- | :--- | :--- |
+| Farms / Crops | COPERNICUS/S2_SR_HARMONIZED | Mean NDVI (Vegetation Health) | Every 5 Days |
+| Walmart Lots (LA & Vegas) | COPERNICUS/S1_GRD | Mean SAR Backscatter (Lot Fullness Index) | Every 6–12 Days |
+
 ## Technology Stack
 
 | Layer | Component | Selected Technology | Operational Rationale |
