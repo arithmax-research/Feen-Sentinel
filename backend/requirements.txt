@@ -1,2 +1,0 @@
-# Placeholder requirements
-# Add your Python dependencies here

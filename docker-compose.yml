@@ -1,10 +1,129 @@
 version: '3.8'
+
 services:
+  # ============================================================================
+  # PostgreSQL with PostGIS - Spatial database
+  # ============================================================================
+  db:
+    image: postgis/postgis:15-3.4
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-sentinel_admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-secure_development_pass}
+      POSTGRES_DB: ${POSTGRES_DB:-sentinel_gis}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgis_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-sentinel_admin} -d ${POSTGRES_DB:-sentinel_gis}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ============================================================================
+  # Redis - Message broker for Celery
+  # ============================================================================
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ============================================================================
+  # Backend API - FastAPI + ML inference
+  # ============================================================================
   backend:
     build: ./backend
     ports:
       - "8000:8000"
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_USER: ${POSTGRES_USER:-sentinel_admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-secure_development_pass}
+      POSTGRES_DB: ${POSTGRES_DB:-sentinel_gis}
+      REDIS_URL: redis://redis:6379/0
+      GOOGLE_PROJECT_ID: ${GOOGLE_PROJECT_ID:-}
+      GEE_SERVICE_ACCOUNT_CREDENTIALS: ${GEE_SERVICE_ACCOUNT_CREDENTIALS:-}
+      DEBUG: "true"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+      - model_weights:/app/app/models/weights
+
+  # ============================================================================
+  # Celery Worker - Async ML & GEE task processing
+  # ============================================================================
+  worker:
+    build: ./backend
+    command: celery -A backend.app.tasks.worker.celery_app worker --loglevel=info --concurrency=2
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_USER: ${POSTGRES_USER:-sentinel_admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-secure_development_pass}
+      POSTGRES_DB: ${POSTGRES_DB:-sentinel_gis}
+      REDIS_URL: redis://redis:6379/0
+      GOOGLE_PROJECT_ID: ${GOOGLE_PROJECT_ID:-}
+      GEE_SERVICE_ACCOUNT_CREDENTIALS: ${GEE_SERVICE_ACCOUNT_CREDENTIALS:-}
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+      - model_weights:/app/app/models/weights
+
+  # ============================================================================
+  # Celery Beat - Scheduled periodic tasks
+  # ============================================================================
+  beat:
+    build: ./backend
+    command: celery -A backend.app.tasks.worker.celery_app beat --loglevel=info
+    environment:
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+
+  # ============================================================================
+  # Flower - Celery monitoring dashboard
+  # ============================================================================
+  flower:
+    build: ./backend
+    command: celery -A backend.app.tasks.worker.celery_app flower --port=5555
+    ports:
+      - "5555:5555"
+    environment:
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      redis:
+        condition: service_healthy
+
+  # ============================================================================
+  # Frontend - React + MapLibre
+  # ============================================================================
   frontend:
     build: ./frontend
     ports:
       - "3000:3000"
+    environment:
+      VITE_API_URL: http://localhost:8000/api/v1
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend/src:/app/src
+
+volumes:
+  postgis_data:
+  model_weights:
+
